@@ -37,7 +37,7 @@ public class AveragingHeuristic {
    private int threshold ;
          
    //how many nodes are available on each partition ? These need to be averaged out across partitions.
-   private Map <Integer, Integer > availableNodesMap =new HashMap<Integer, Integer >(); ;
+   private Map <Integer, Integer > availableNodesMap =new HashMap<Integer, Integer >();  
     
    private List<ActiveSubtreeCollection> partitionList;
    
@@ -95,7 +95,7 @@ public class AveragingHeuristic {
        
        //check if any partition has less than the user specified minimum number of leaf nodes
        for (Map.Entry <Integer, Integer > entry : currentTotalNodeCountMap.entrySet()){
-           if (entry.getValue() <   threshold) {
+           if (entry.getValue() <  -ONE+ threshold) {
                result = true ;
                break;
            }
