@@ -99,8 +99,9 @@ public class RawNodeAverager {
     }
     
     public boolean isLoadBalancingRequired () {
-       boolean result = false;
+       //boolean result = false;
        
+       /*
        //check if any partition has less than the user specified minimum number of leaf nodes
        for (Map.Entry <Integer, Integer > entry : availableNodesMap.entrySet()){
            if (entry.getValue() <  -ONE+ threshold) {
@@ -108,8 +109,18 @@ public class RawNodeAverager {
                break;
            }
        }
+       */
+       List<Integer> listOfCounts = new ArrayList (availableNodesMap.values());
+       Collections.sort(listOfCounts);
        
-       return result;
+       int richestCount = listOfCounts.get(ZERO);
+       
+       Collections.reverse(listOfCounts);
+       
+       int poorestCount = listOfCounts.get(ZERO);
+       
+       //return result;
+       return Math.abs(poorestCount-richestCount) >= TWO;
     }
       
     //find node count per partition
